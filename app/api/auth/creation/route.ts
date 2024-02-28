@@ -1,5 +1,6 @@
 import prisma from "@/app/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
@@ -22,18 +23,15 @@ export async function GET() {
           firstName: user.given_name ?? "",
           lastName: user.family_name ?? "",
           id: user.id,
+          profileImage:
+            user.picture ?? `https://avatar.vercel.sh/${user.given_name}`,
         },
       });
     }
 
-    return {
-      status: 200,
-      body: userDb,
-    };
-  } catch (error: any) {
-    return {
-      status: 500,
-      body: { error: error.message },
-    };
+    return NextResponse.redirect("http://localhost:3000");
+  } catch (error) {
+    console.error(error);
+    return { error: "Please try again later." };
   }
 }
