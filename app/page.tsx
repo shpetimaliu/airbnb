@@ -1,9 +1,3 @@
-import { Button } from "@/components/ui/button";
-
 export default function Home() {
-  return (
-    <div>
-      <Button>Shpetim</Button>
-    </div>
-  );
+  return <div></div>;
 }
