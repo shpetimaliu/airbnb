@@ -1,3 +1,4 @@
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Suspense } from "react";
 import ListingCard from "./components/ListingCard";
 import MapFilter from "./components/MapFilter";
@@ -7,7 +8,9 @@ import prisma from "./lib/db";
 
 async function getData({
   searchParams,
+  userId,
 }: {
+  userId: string | undefined;
   searchParams?: {
     filter?: string;
   };
@@ -26,6 +29,7 @@ async function getData({
       price: true,
       description: true,
       country: true,
+      Favorite: { where: { userId: userId ?? undefined } },
     },
   });
   return data;
@@ -56,7 +60,9 @@ async function ShowPlace({
     filter?: string;
   };
 }) {
-  const data = await getData({ searchParams: searchParams });
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  const data = await getData({ searchParams: searchParams, userId: user?.id });
 
   return (
     <>
@@ -72,6 +78,11 @@ async function ShowPlace({
               imagePath={item.photo as string}
               price={item.price as number}
               location={item.country as string}
+              userId={user?.id}
+              favoriteId={item.Favorite[0]?.id}
+              isInFavoriteList={item.Favorite.length > 0 ? true : false}
+              homeId={item.id}
+              pathName="/"
             />
           ))}
         </div>
