@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import ListingCard from "./components/ListingCard";
 import MapFilter from "./components/MapFilter";
+import Nothing from "./components/Nothing";
+import SkeletonCard from "./components/SkeletonCard";
 import prisma from "./lib/db";
 
 async function getData({
@@ -40,7 +42,7 @@ export default function Home({
     <div className="container mx-auto px-5 lg:px-10">
       <MapFilter />
 
-      <Suspense key={searchParams?.filter} fallback={<p>Loading...</p>}>
+      <Suspense key={searchParams?.filter} fallback={<SkeletonLoader />}>
         <ShowPlace searchParams={searchParams} />
       </Suspense>
     </div>
@@ -57,17 +59,38 @@ async function ShowPlace({
   const data = await getData({ searchParams: searchParams });
 
   return (
+    <>
+      {data.length === 0 ? (
+        <Nothing />
+      ) : (
+        <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
+          {data.map((item) => (
+            <ListingCard
+              key={item.id}
+              title={item.title as string}
+              description={item.description as string}
+              imagePath={item.photo as string}
+              price={item.price as number}
+              location={item.country as string}
+            />
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
+
+function SkeletonLoader() {
+  return (
     <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
-      {data.map((item) => (
-        <ListingCard
-          key={item.id}
-          title={item.title as string}
-          description={item.description as string}
-          imagePath={item.photo as string}
-          price={item.price as number}
-          location={item.country as string}
-        />
-      ))}
+      <SkeletonCard />
+      <SkeletonCard />
+      <SkeletonCard />
+      <SkeletonCard />
+      <SkeletonCard />
+      <SkeletonCard />
+      <SkeletonCard />
+      <SkeletonCard />
     </div>
   );
 }
