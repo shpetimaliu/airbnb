@@ -1,10 +1,11 @@
 import Counter from "@/app/components/Counter";
+import CreateButtonBar from "@/app/components/CreateButtonBar";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-function DescriptionPage() {
+function DescriptionPage({ params }: { params: { id: string } }) {
   return (
     <>
       <div className="w-3/5 mx-auto">
@@ -13,6 +14,7 @@ function DescriptionPage() {
         </h2>
       </div>
       <form>
+        <input type="hidden" name="homeId" value={params.id} />
         <div className="mx-auto w-3/5 mt-10 flex flex-col gap-y-5 mb-36">
           <div className="flex flex-col gap-y-2">
             <Label>Title</Label>
@@ -58,7 +60,7 @@ function DescriptionPage() {
                     How many guests do you want?
                   </p>
                 </div>
-                <Counter />
+                <Counter name="guests" />
               </div>
 
               <div className="flex items-center justify-between">
@@ -68,7 +70,7 @@ function DescriptionPage() {
                     How many rooms do you have?
                   </p>
                 </div>
-                <Counter />
+                <Counter name="rooms" />
               </div>
 
               <div className="flex items-center justify-between">
@@ -78,11 +80,12 @@ function DescriptionPage() {
                     How many bathrooms do you have?
                   </p>
                 </div>
-                <Counter />
+                <Counter name="bathrooms" />
               </div>
             </CardHeader>
           </Card>
         </div>
+        <CreateButtonBar />
       </form>
     </>
   );
