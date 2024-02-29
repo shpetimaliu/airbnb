@@ -1,8 +1,10 @@
+import { createCategoryPage } from "@/app/action";
 import CategorySelector from "@/app/components/CategorySelector";
+import SubmitButtons from "@/app/components/SubmitButtons";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-function RouteIStruktures() {
+function RouteIStruktures({ params }: { params: { id: string } }) {
   return (
     <>
       <div className="w-3/5 mx-auto">
@@ -10,7 +12,8 @@ function RouteIStruktures() {
           Which of these best describe your home?
         </h2>
       </div>
-      <form>
+      <form action={createCategoryPage}>
+        <input type="hidden" name="homeId" value={params.id} />
         <CategorySelector />
 
         <div className="fixed w-full bottom-0 z-10 bg-white border-t h-24">
@@ -18,7 +21,7 @@ function RouteIStruktures() {
             <Button variant="secondary" size="lg">
               <Link href={"/"}>Cancel</Link>
             </Button>
-            <Button size="lg">Save</Button>
+            <SubmitButtons />
           </div>
         </div>
       </form>

@@ -17,26 +17,31 @@ datasource db {
 model User {
   id String @id @unique
 
-  email String
-  firstName String
-  lastName String
-  profileImage String?
+  email         String
+  firstName     String
+  lastName      String
+  profileImage  String?
   Home          Home[]
 }
 
 model Home {
   id String @id @default(uuid())
 
-  title String?
-  description String?
-  guests String?
-  bedrooms String?   
-  bathrooms String?  
-  country String?
-  photo String?
-  price String?
+  title           String?
+  description     String?
+  guests          String?
+  bedrooms        String?   
+  bathrooms       String?  
+  country         String?
+  photo           String?
+  price           Int?
+  categoryName    String?
 
-  createdAt DateTime @default(now())  
-  User User? @relation(fields: [userId], references: [id])  
-  userId String? 
+  addedCategory       Boolean @default(false)
+  addedDescription    Boolean @default(false)
+  addedLocation       Boolean @default(false)
+
+  createdAt         DateTime @default(now())  
+  User              User? @relation(fields: [userId], references: [id])  
+  userId            String? 
 }
