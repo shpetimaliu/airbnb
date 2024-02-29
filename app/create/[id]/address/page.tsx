@@ -1,3 +1,4 @@
+"use client";
 import CreateButtonBar from "@/app/components/CreateButtonBar";
 import { useCountries } from "@/app/lib/getCountries";
 import {
@@ -11,9 +12,11 @@ import {
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 
 function AddressRoute() {
   const { getAllCountries } = useCountries();
+  const [locationValue, setLocationValue] = useState("");
   const LazyMap = dynamic(() => import("@/app/components/Map"), {
     ssr: false,
     loading: () => <Skeleton className="h-[50vh] w-full" />,
@@ -28,9 +31,9 @@ function AddressRoute() {
       </div>
 
       <form>
-        <div className="w-3/5 mx-auto">
+        <div className="w-3/5 mx-auto mb-36">
           <div className="mb-5">
-            <Select required>
+            <Select required onValueChange={(value) => setLocationValue(value)}>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select a country"></SelectValue>
               </SelectTrigger>
@@ -39,7 +42,7 @@ function AddressRoute() {
                   <SelectLabel>Countries</SelectLabel>
                   {getAllCountries().map((item) => (
                     <SelectItem key={item.value} value={item.value}>
-                      {item.flag} {item.label} <p>{item.region}</p>
+                      {item.flag} {item.label} / {item.region}
                     </SelectItem>
                   ))}
                 </SelectGroup>
@@ -47,7 +50,7 @@ function AddressRoute() {
             </Select>
           </div>
 
-          <LazyMap />
+          <LazyMap locationValue={locationValue} />
         </div>
 
         <CreateButtonBar />
