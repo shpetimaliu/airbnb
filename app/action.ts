@@ -76,6 +76,9 @@ export async function createDescription(formData: FormData) {
       bathrooms: bathroomsNumber,
       guests: guestsNumber,
       photo: imageData?.path,
+      addedDescription: true,
     },
   });
+
+  return redirect(`/create/${homeId}/address`);
 }

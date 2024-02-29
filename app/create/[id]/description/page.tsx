@@ -1,3 +1,4 @@
+import { createDescription } from "@/app/action";
 import Counter from "@/app/components/Counter";
 import CreateButtonBar from "@/app/components/CreateButtonBar";
 import { Card, CardHeader } from "@/components/ui/card";
@@ -13,7 +14,7 @@ function DescriptionPage({ params }: { params: { id: string } }) {
           Please description your home as good as you can.
         </h2>
       </div>
-      <form>
+      <form action={createDescription}>
         <input type="hidden" name="homeId" value={params.id} />
         <div className="mx-auto w-3/5 mt-10 flex flex-col gap-y-5 mb-36">
           <div className="flex flex-col gap-y-2">
