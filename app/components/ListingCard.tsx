@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { AddToFavorite } from "../action";
+import { AddToFavorite, RemoveFromFavorite } from "../action";
 import { useCountries } from "../lib/getCountries";
 import { AddToFavoriteButton, DeleteFromFavorite } from "./SubmitButtons";
 
@@ -44,7 +44,10 @@ function ListingCard({
         {userId && (
           <div className="z-10 absolute top-2 right-2">
             {isInFavoriteList ? (
-              <form>
+              <form action={RemoveFromFavorite}>
+                <input type="hidden" name="favoriteId" value={favoriteId} />
+                <input type="hidden" name="userId" value={userId} />
+                <input type="hidden" name="pathName" value={pathName} />
                 <DeleteFromFavorite />
               </form>
             ) : (

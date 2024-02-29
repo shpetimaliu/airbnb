@@ -131,3 +131,18 @@ export async function AddToFavorite(formData: FormData) {
 
   revalidatePath(pathName);
 }
+
+export async function RemoveFromFavorite(formData: FormData) {
+  const favoriteId = formData.get("favoriteId") as string;
+  const pathName = formData.get("pathName") as string;
+  const userId = formData.get("userId") as string;
+
+  const data = await prisma.favorite.delete({
+    where: {
+      id: favoriteId,
+      userId: userId,
+    },
+  });
+
+  revalidatePath(pathName);
+}
