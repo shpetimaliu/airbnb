@@ -1,4 +1,5 @@
 "use client";
+import { createLocation } from "@/app/action";
 import CreateButtonBar from "@/app/components/CreateButtonBar";
 import { useCountries } from "@/app/lib/getCountries";
 import {
@@ -14,7 +15,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
-function AddressRoute() {
+function AddressRoute({ params }: { params: { id: string } }) {
   const { getAllCountries } = useCountries();
   const [locationValue, setLocationValue] = useState("");
   const LazyMap = dynamic(() => import("@/app/components/Map"), {
@@ -30,7 +31,9 @@ function AddressRoute() {
         </h2>
       </div>
 
-      <form>
+      <form action={createLocation}>
+        <input type="hidden" name="homeId" value={params.id} />
+        <input type="hidden" name="countryValue" value={locationValue} />
         <div className="w-3/5 mx-auto mb-36">
           <div className="mb-5">
             <Select required onValueChange={(value) => setLocationValue(value)}>
