@@ -30,7 +30,7 @@ export async function GET() {
     }
 
     return NextResponse.redirect("http://localhost:3000");
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     return { error: "Please try again later." };
   }
