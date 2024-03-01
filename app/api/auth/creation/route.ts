@@ -3,7 +3,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { unstable_noStore as noStore } from "next/cache";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(): Promise<void | NextResponse> {
   noStore();
   try {
     const { getUser } = getKindeServerSession();
@@ -34,6 +34,9 @@ export async function GET() {
     return NextResponse.redirect("http://localhost:3000");
   } catch (error: any) {
     console.error(error);
-    return { error: "Please try again later." };
+    return NextResponse.json(
+      { error: "Please try again later." },
+      { status: 500 }
+    );
   }
 }
