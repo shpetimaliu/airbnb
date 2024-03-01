@@ -49,7 +49,7 @@ async function UserNav() {
               </form>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="/my-list" className="w-full">
+              <Link href="/my-listing" className="w-full">
                 My Listing
               </Link>
             </DropdownMenuItem>

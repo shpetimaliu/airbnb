@@ -2,7 +2,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Suspense } from "react";
 import ListingCard from "./components/ListingCard";
 import MapFilter from "./components/MapFilter";
-import Nothing from "./components/Nothing";
+import { Nothing } from "./components/Nothing";
 import SkeletonCard from "./components/SkeletonCard";
 import prisma from "./lib/db";
 
