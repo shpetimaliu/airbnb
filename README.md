@@ -1,3 +1,5 @@
+![airbnb](https://socialify.git.ci/shpetimaliu/airbnb/image?language=1&owner=1&name=1&stargazers=1&theme=Light)
+
 [![ShpetimaLiu](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=shields.io&logoColor=white)](https://shpetimaliu.dev/)
 
 [![Supabase](https://img.shields.io/badge/Supabase-Realtime%20Database-brightgreen)](https://supabase.io/)
