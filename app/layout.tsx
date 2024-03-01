@@ -17,6 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link rel="icon" href="/mobile_logo.svg" sizes="any" />
       <body className={inter.className}>
         <Navbar />
 
