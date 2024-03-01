@@ -61,7 +61,7 @@ function ListingCard({
           </div>
         )}
       </div>
-      <Link href={"/"} className="mt-2">
+      <Link href={`/home/${homeId}`} className="mt-2">
         <h3 className="font-medium text-base">
           {country?.flag} {country?.label}, {country?.region}
         </h3>
