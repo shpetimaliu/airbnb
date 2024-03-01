@@ -20,6 +20,8 @@ function SelectCalendar() {
         rangeColors={["#FF5A5F"]}
         ranges={dates}
         onChange={(item) => setDates([item.selection] as any)}
+        minDate={new Date()}
+        direction="vertical"
       />
     </div>
   );
