@@ -146,3 +146,21 @@ export async function RemoveFromFavorite(formData: FormData) {
 
   revalidatePath(pathName);
 }
+
+export async function creteReservation(formDate: FormData) {
+  const homeId = formDate.get("homeId") as string;
+  const userId = formDate.get("userId") as string;
+  const startDate = formDate.get("startDate") as string;
+  const endDate = formDate.get("endDate") as string;
+
+  const data = await prisma.reservation.create({
+    data: {
+      userId: userId,
+      homeId: homeId,
+      startDate: startDate,
+      endDate: endDate,
+    },
+  });
+
+  return redirect(`/`);
+}
