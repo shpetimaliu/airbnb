@@ -1,7 +1,7 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import ListingCard from "../components/ListingCard";
-import { NothingFavorite } from "../components/Nothing";
+import { Nothing } from "../components/Nothing";
 import prisma from "../lib/db";
 
 async function getData(userId: string) {
@@ -36,7 +36,10 @@ async function page() {
       <h2 className="text-3xl font-medium tracking-tight">Your favorites</h2>
 
       {data.length === 0 ? (
-        <NothingFavorite />
+        <Nothing
+          title="You have not saved any of our listings to your favorites"
+          description="We expect you to fill this with the places you want to visit ❤️"
+        />
       ) : (
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-8 mt-8">
           {data.map((item) => (

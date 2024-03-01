@@ -67,7 +67,10 @@ async function ShowPlace({
   return (
     <>
       {data.length === 0 ? (
-        <Nothing />
+        <Nothing
+          title="This destination will soon have many listings 🤩"
+          description="Please check a other category or create your own listing!"
+        />
       ) : (
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
           {data.map((item) => (

@@ -47,7 +47,10 @@ async function page() {
 
       {data.length === 0 ? (
         <>
-          <Nothing />
+          <Nothing
+            title="There are no destinations listed by you"
+            description="Please list a property on airbnb so that you can see it right here 👀"
+          />
         </>
       ) : (
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-8 mt-8">
