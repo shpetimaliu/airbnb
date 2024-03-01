@@ -11,7 +11,7 @@ export async function GET(): Promise<void | NextResponse> {
     const user = await getUser();
 
     if (!user || user === null) {
-      throw new Error("User not found or null.");
+      throw new Error("User not found or null...");
     }
 
     let userDb = await prisma.user.findUnique({
