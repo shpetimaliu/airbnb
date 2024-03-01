@@ -2,6 +2,7 @@ import { creteReservation } from "@/app/action";
 import HomeMap from "@/app/components/HomeMap";
 import SelectCalendar from "@/app/components/SelectCalendar";
 import ShowCaseCategory from "@/app/components/ShowCaseCategory";
+import { SubmitReservationButton } from "@/app/components/SubmitButtons";
 import prisma from "@/app/lib/db";
 import { useCountries } from "@/app/lib/getCountries";
 import { Button } from "@/components/ui/button";
@@ -102,9 +103,7 @@ async function SingleHomePage({ params }: { params: { id: string } }) {
           <SelectCalendar reservation={data?.Reservation} />
 
           {user?.id ? (
-            <Button className="w-full" type="submit">
-              Make a reservation
-            </Button>
+            <SubmitReservationButton />
           ) : (
             <Button className="w-full" asChild>
               <Link href={"/api/auth/login"}>Make a reservation</Link>
