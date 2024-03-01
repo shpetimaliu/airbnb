@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/logo.svg";
 import mobileLogo from "../../public/mobile_logo.svg";
+import SearchBox from "./SearchBox";
 import UserNav from "./UserNav";
 
 function Navbar() {
@@ -16,10 +17,7 @@ function Navbar() {
             className="block lg:hidden w-12"
           />
         </Link>
-        <div className="rounded-full border px-5 py-2">
-          <h1>Hello from search </h1>
-        </div>
-
+        <SearchBox />
         <UserNav />
       </div>
     </nav>
