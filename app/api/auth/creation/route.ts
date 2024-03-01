@@ -1,11 +1,10 @@
 import prisma from "@/app/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { NextApiRequest, NextApiResponse } from "next";
+import { unstable_noStore as noStore } from "next/cache";
+import { NextResponse } from "next/server";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export async function GET() {
+  noStore();
   try {
     const { getUser } = getKindeServerSession();
 
@@ -32,10 +31,9 @@ export default async function handler(
       });
     }
 
-    res.writeHead(302, { Location: "http://localhost:3000" });
-    res.end();
+    return NextResponse.redirect("http://localhost:3000");
   } catch (error: any) {
     console.error(error);
-    res.status(500).json({ error: "Please try again later." });
+    return { error: "Please try again later." };
   }
 }
