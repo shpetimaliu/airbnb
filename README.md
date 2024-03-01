@@ -1,4 +1,4 @@
-![airbnb](https://socialify.git.ci/shpetimaliu/airbnb/image?language=1&owner=1&name=1&stargazers=1&theme=Light)
+![airbnb](https://socialify.git.ci/shpetimaliu/airbnb/image?description=1&language=1&name=1&owner=1&theme=Light)
 
 [![ShpetimaLiu](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=shields.io&logoColor=white)](https://shpetimaliu.dev/)
 
